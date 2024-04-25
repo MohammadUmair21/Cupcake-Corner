@@ -44,7 +44,7 @@ class Order: Codable {
     var zip = ""
 
     var hasValidAddress: Bool {
-        if name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty {
+        if name.isReallyEmpty || streetAddress.isReallyEmpty || city.isReallyEmpty || zip.isReallyEmpty {
             return false
         }
 
@@ -69,5 +69,10 @@ class Order: Codable {
         }
 
         return cost
+    }
+}
+extension String {
+    var isReallyEmpty: Bool {
+        self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }
